@@ -1,0 +1,9 @@
+body{
+		font-family: monospace;
+		font-size: 16px;
+		background: rgba(117, 156, 75, 0.65);
+		margin-left: 10%;
+}
+h1,h2{
+	padding-left:4%;
+}

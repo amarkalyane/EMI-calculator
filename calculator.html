@@ -1,0 +1,113 @@
+<html>
+<head><title>Bascic Calculator</title>
+	<link rel="stylesheet"href="style.css"type="text/css">	
+</head>
+<body>
+<h1>EMI calculator</h1>
+<form name="first">
+	<table border="1">
+		<tr>
+			<td><label>Loan Amount:</label></td>
+			<td><input  name="aa" id="aa" type="text"  onkeyup="checnum(this)"></td>
+		</tr>
+		<tr>
+			<td><label  for="cc">Term(Years):</label></td>
+			<td><input class="form-control" name="bb" id="bb" type="text"  onkeyup="checnum(this)"></td>
+		</tr>
+		<tr>
+			<td><label  for="bb">Interest Rates:</label></td>
+			<td><input class="form-control" name="cc" id="cc" type="text"  onkeyup="checnum(this)"></td>
+		</tr>
+		<tr>
+			<td colspan="2"style="text-align:center;"><input type="button" name="ss" id="ss" value="Calculate" onclick="loan()">
+		</tr>
+	</table >
+	<table border="1">
+		<h2>EMI Caluclaor Results:</h2>
+		<tr>
+			<td><label for="r1">Monthly Payment(EMI):</label></td>
+			<td><input name="r1" id="r1" type="text" readonly=""></td>
+		</tr>
+		<tr>
+			<td><label  for="r2">Monthly Avg. Interest:</label></td>
+			<td><input  name="r2" id="r2" type="text" readonly=""></td>
+		</tr>
+		<tr>
+			<td><label for="r3">Monthly Interest:</label></td>
+			<td><input name="r3" id="r3" type="text" readonly=""></td>
+		</tr>
+	</table>
+</form>
+<h2>Basic Calculator</h2>
+<form>
+	<table border="1">
+		<tr>
+			<td><input type=text id="a1" placeholder="Enter First Number" required></td>
+			<td><input type=text id="a2" placeholder="Enter Second Number" required></td>
+		</tr>
+		<tr>
+		<td colspan="2"style="text-align:center;"><button type="button" onclick="myfunction()">Get Calulate</button></td>
+		</tr>
+	</table>
+</form>
+<br>
+<h3>Result Calculator</h3>
+<table border="1">
+		<tr>
+			<td>Multiplication result:</td>
+			<td><input type=text id="mul"disabled></td>
+		</tr>
+		<tr>
+			<td>Addition result:</td>
+			<td><input type=text id="add"disabled></td>
+		</tr>
+			<tr><td>Square result:</td>
+			<td><input type=text id="square"disabled></td>
+		</tr>
+</table>
+<script>
+function myfunction(){
+var x = document.getElementById("a1").value;
+var y = document.getElementById("a2").value;
+var z = x * y;
+var a = parseInt(x) + parseInt(y);
+var b = x * x;
+document.getElementById("mul").value= z;
+document.getElementById("add").value= a ;
+document.getElementById("square").value = b;
+}
+function checnum(as){
+	var dd = as.value;
+	if(isNaN(dd))
+	{
+		dd = dd.substring(0,(dd.length-1));
+		as.value = dd;
+	}		
+}
+function loan(){
+	var a = document.first.aa.value;
+	var b = document.first.bb.value;
+	var c = document.first.cc.value;
+	var n = c * 12;
+	var r = b/(12*100);
+	var p = (a * r *Math.pow((1+r),n))/(Math.pow((1+r),n)-1);
+	var prin = Math.round(p*100)/100;
+	document.first.r1.value = prin;
+	var mon = Math.round(((n * prin) - a)*100)/100;
+	document.first.r2.value = mon;
+	var tot = Math.round((mon/n)*100)/100;
+	document.first.r3.value = tot;
+	for(var i=0;i<n;i++)
+	{
+		var z = a * r * 1;
+		var q = Math.round(z*100)/100;
+		var t = p - z;
+		var w = Math.round(t*100)/100;
+		var e = a-t;
+		var l = Math.round(e*100)/100;
+		a=e;
+	}
+}
+</script>
+</body>
+</html>
